@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, Button, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  Button,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard
+} from "react-native";
 //AWS
 import Amplify from "@aws-amplify/core";
 import config from "./aws-exports";
@@ -64,31 +72,37 @@ export default class App extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          value={this.state.skill}
-          onChangeText={val => this.onChangeText("title", val)}
-          placeholder="What skill do you want to master?"
-        />
-        <TextInput
-          style={styles.input}
-          value={this.state.hours}
-          onChangeText={val => this.onChangeText("hours", val)}
-          placeholder="Current hours practicing that skill"
-        />
-        <Button
-          onPress={this.addSkill}
-          title="Add to Master List"
-          color="#eeaa55"
-        />
-        {this.state.skills.map((skill, index) => (
-          <View key={index} style={styles.skill}>
-            <Text style={styles.title}>{skill.title}</Text>
-            <Text style={styles.hours}>{skill.hours}</Text>
-          </View>
-        ))}
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.container}>
+          <TextInput
+            style={styles.input}
+            value={this.state.skill}
+            onChangeText={val => this.onChangeText("title", val)}
+            placeholder="What skill do you want to master?"
+          />
+          <TextInput
+            style={styles.input}
+            value={this.state.hours}
+            onChangeText={val => this.onChangeText("hours", val)}
+            placeholder="Current hours practicing that skill"
+          />
+          <Button
+            onPress={this.addSkill}
+            title="Add to Master List"
+            color="#eeaa55"
+          />
+          {this.state.skills.map((skill, index) => (
+            <View key={index} style={styles.skill}>
+              <Text style={styles.title}>{skill.title}</Text>
+              <Text style={styles.hours}>{skill.hours}</Text>
+            </View>
+          ))}
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
