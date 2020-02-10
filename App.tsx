@@ -1,11 +1,44 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, Button, View } from "react-native";
+//AWS
+import Amplify from "@aws-amplify/core";
+import config from "./aws-exports";
+import API, { graphqlOperation } from "@aws-amplify/api";
+
+Amplify.configure(config);
+
+const AddSkill = `
+    mutation ($title: String! $hours: String!) {
+      createSkill(input: {
+        title: $title
+        hours: $hours
+      }) {
+        id title hours
+      }
+    }
+    `;
+
 export default class App extends React.Component {
   state = {
-    skill: "",
+    title: "",
     hours: "",
     skills: []
   };
+
+  addSkill = async () => {
+    console.log("this");
+    if (this.state.title === "" || this.state.hours === "") return;
+    const skill = { title: this.state.title, hours: this.state.hours };
+    try {
+      const skills = [...this.state.skills, skill];
+      this.setState({ skills, title: "", hours: "" });
+      await API.graphql(graphqlOperation(AddSkill, skill));
+      console.log("success");
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  };
+
   onChangeText = (key, val) => {
     this.setState({ [key]: val });
   };
@@ -15,7 +48,7 @@ export default class App extends React.Component {
         <TextInput
           style={styles.input}
           value={this.state.skill}
-          onChangeText={val => this.onChangeText("skill", val)}
+          onChangeText={val => this.onChangeText("title", val)}
           placeholder="What skill do you want to master?"
         />
         <TextInput
@@ -25,7 +58,7 @@ export default class App extends React.Component {
           placeholder="Current hours practicing that skill"
         />
         <Button
-          onPress={() => alert("Success!")}
+          onPress={this.addSkill}
           title="Add to Master List"
           color="#eeaa55"
         />

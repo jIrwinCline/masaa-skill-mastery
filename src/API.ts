@@ -6,13 +6,13 @@ export type CreateSkillInput = {
   id?: string | null,
   title: string,
   description?: string | null,
-  hours: number,
+  hours: string,
 };
 
 export type ModelSkillConditionInput = {
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  hours?: ModelIntInput | null,
+  hours?: ModelStringInput | null,
   and?: Array< ModelSkillConditionInput | null > | null,
   or?: Array< ModelSkillConditionInput | null > | null,
   not?: ModelSkillConditionInput | null,
@@ -58,23 +58,11 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
 export type UpdateSkillInput = {
   id: string,
   title?: string | null,
   description?: string | null,
-  hours?: number | null,
+  hours?: string | null,
 };
 
 export type DeleteSkillInput = {
@@ -85,7 +73,7 @@ export type ModelSkillFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  hours?: ModelIntInput | null,
+  hours?: ModelStringInput | null,
   and?: Array< ModelSkillFilterInput | null > | null,
   or?: Array< ModelSkillFilterInput | null > | null,
   not?: ModelSkillFilterInput | null,
@@ -118,7 +106,7 @@ export type CreateSkillMutation = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -133,7 +121,7 @@ export type UpdateSkillMutation = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -148,7 +136,7 @@ export type DeleteSkillMutation = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -162,7 +150,7 @@ export type GetSkillQuery = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -180,7 +168,7 @@ export type ListSkillsQuery = {
       id: string,
       title: string,
       description: string | null,
-      hours: number,
+      hours: string,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -192,7 +180,7 @@ export type OnCreateSkillSubscription = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -202,7 +190,7 @@ export type OnUpdateSkillSubscription = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
 
@@ -212,6 +200,6 @@ export type OnDeleteSkillSubscription = {
     id: string,
     title: string,
     description: string | null,
-    hours: number,
+    hours: string,
   } | null,
 };
