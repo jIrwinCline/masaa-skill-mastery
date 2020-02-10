@@ -18,6 +18,16 @@ const AddSkill = `
     }
     `;
 
+const ListSkills = `
+    query {
+      listSkills {
+        items {
+          id title hours
+        }
+      }
+    }
+    `;
+
 export default class App extends React.Component {
   state = {
     title: "",
@@ -38,6 +48,16 @@ export default class App extends React.Component {
       console.log("error: ", err);
     }
   };
+
+  async componentDidMount() {
+    try {
+      const skills = await API.graphql(graphqlOperation(ListSkills));
+      console.log("skills: ", skills);
+      this.setState({ skills: skills.data.listSkills.items });
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  }
 
   onChangeText = (key, val) => {
     this.setState({ [key]: val });
@@ -62,6 +82,12 @@ export default class App extends React.Component {
           title="Add to Master List"
           color="#eeaa55"
         />
+        {this.state.skills.map((skill, index) => (
+          <View key={index} style={styles.skill}>
+            <Text style={styles.title}>{skill.title}</Text>
+            <Text style={styles.hours}>{skill.hours}</Text>
+          </View>
+        ))}
       </View>
     );
   }
@@ -78,7 +104,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: "blue",
     marginVertical: 10
-  }
+  },
+  skill: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    paddingVertical: 10
+  },
+  title: { fontSize: 16 },
+  hours: { color: "rgba(0, 0, 0, .5)" }
 });
 
 // import { StyleSheet, Text, View } from "react-native";
