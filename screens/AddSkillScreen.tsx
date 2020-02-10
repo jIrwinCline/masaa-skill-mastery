@@ -63,7 +63,7 @@ const AddSkillScreen = () => {
       try {
         const skills = await API.graphql(graphqlOperation(ListSkills));
         console.log("skills: ", skills);
-        this.setState({ skills: skills.data.listSkills.items });
+        this.setState({ skills: currentSkills.data.listSkills.items });
       } catch (err) {
         console.log("error: ", err);
       }

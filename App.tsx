@@ -128,11 +128,13 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Login from "./screens/LoginScreen";
 import AddSkillScreen from "./screens/AddSkillScreen";
+import SkillsHomeScreen from "./screens/SkillsHomeScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <AddSkillScreen />
+      {/* <AddSkillScreen /> */}
+      <SkillsHomeScreen />
     </View>
   );
 }
