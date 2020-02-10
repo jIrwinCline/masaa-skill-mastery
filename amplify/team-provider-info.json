@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-masaanative-dev-185157-authRole",
+            "UnauthRoleArn": "arn:aws:iam::845220073276:role/amplify-masaanative-dev-185157-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::845220073276:role/amplify-masaanative-dev-185157-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-masaanative-dev-185157-deployment",
+            "UnauthRoleName": "amplify-masaanative-dev-185157-unauthRole",
+            "StackName": "amplify-masaanative-dev-185157",
+            "StackId": "arn:aws:cloudformation:us-west-2:845220073276:stack/amplify-masaanative-dev-185157/4e3ded30-4bb0-11ea-b580-06bedd0f3972",
+            "AmplifyAppId": "d35v130fer71je"
+        }
+    }
+}
