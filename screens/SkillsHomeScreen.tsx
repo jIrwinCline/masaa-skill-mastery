@@ -18,7 +18,7 @@ const ListSkills = `
     }
     `;
 
-const SkillsHomeScreen = () => {
+const SkillsHomeScreen = props => {
   const [currentSkills, setCurrentSkills] = useState([
     { title: "test", hours: "30" }
   ]);
@@ -38,7 +38,13 @@ const SkillsHomeScreen = () => {
   return (
     <View style={styles.container}>
       {currentSkills.map((skill, index) => (
-        <TouchableOpacity key={index} style={styles.skill}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate({ routeName: "SkillDetails" });
+          }}
+          key={index}
+          style={styles.skill}
+        >
           <Text style={styles.title}>{skill.title}</Text>
           <Text style={styles.hours}>{skill.hours}</Text>
         </TouchableOpacity>
