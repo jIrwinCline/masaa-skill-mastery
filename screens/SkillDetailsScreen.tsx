@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const SkillDetailsScreen = () => {
+const SkillDetailsScreen = props => {
   return (
     <View>
-      <Text>Skill Details Screen</Text>
+      <Text>props.skill.title</Text>
     </View>
   );
 };

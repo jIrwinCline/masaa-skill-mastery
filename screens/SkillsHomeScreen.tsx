@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 
 //AWS
 import Amplify from "@aws-amplify/core";
@@ -36,18 +36,28 @@ const SkillsHomeScreen = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       {currentSkills.map((skill, index) => (
-        <View key={index} style={styles.skill}>
+        <TouchableOpacity key={index} style={styles.skill}>
           <Text style={styles.title}>{skill.title}</Text>
           <Text style={styles.hours}>{skill.hours}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
+      <Button
+        title="Add a New Skill"
+        onPress={() => console.log("button pressed")}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 10,
+    paddingTop: 50
+  },
   skill: {
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",

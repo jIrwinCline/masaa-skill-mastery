@@ -130,11 +130,12 @@ import Login from "./screens/LoginScreen";
 import AddSkillScreen from "./screens/AddSkillScreen";
 import SkillsHomeScreen from "./screens/SkillsHomeScreen";
 
+import AppNavigator from "./navigation/AppNavigator";
+
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <AddSkillScreen /> */}
-      <SkillsHomeScreen />
+      <AppNavigator />
     </View>
   );
 }
