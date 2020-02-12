@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-
+import { observer, inject } from "mobx-react";
 //AWS
 import Amplify from "@aws-amplify/core";
 import config from "../aws-exports";
@@ -18,7 +18,11 @@ const ListSkills = `
     }
     `;
 
-const SkillsHomeScreen = props => {
+/**
+    inject("skillStore")(
+  observer(({ skillStore, ...props }) => 
+     */
+const SkillsHomeScreen = () => {
   const [currentSkills, setCurrentSkills] = useState([
     { title: "test", hours: "30" }
   ]);
@@ -51,7 +55,9 @@ const SkillsHomeScreen = props => {
       ))}
       <Button
         title="Add a New Skill"
-        onPress={() => console.log("button pressed")}
+        onPress={() => {
+          props.navigation.navigate({ routeName: "AddSkill" });
+        }}
       />
     </View>
   );

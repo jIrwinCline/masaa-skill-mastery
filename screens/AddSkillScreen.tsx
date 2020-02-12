@@ -37,7 +37,7 @@ const ListSkills = `
     }
     `;
 
-const AddSkillScreen = () => {
+const AddSkillScreen = props => {
   const [currentTitle, setCurrentTitle] = useState("");
   const [currentHours, setCurrentHours] = useState("");
   const [currentSkills, setCurrentSkills] = useState([]);
