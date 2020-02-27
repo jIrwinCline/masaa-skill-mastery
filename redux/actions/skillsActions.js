@@ -21,7 +21,7 @@ export const getSkills = () => dispatch => {
   async function fetchData() {
     try {
       const skills = await API.graphql(graphqlOperation(ListSkills));
-      //   console.log("skills: ", skills);
+      await console.log("skills: ", skills);
       await dispatch({
         type: SET_SKILLS,
         payload: skills.data.listSkills.items
