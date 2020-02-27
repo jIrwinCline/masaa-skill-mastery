@@ -51,7 +51,7 @@ const SkillsHomeScreen = props => {
       ))}
       <Button
         title="Add a New Skill"
-        onPress={() => console.log("button pressed")}
+        onPress={() => props.navigation.navigate("AddSkill")}
       />
     </View>
   );
