@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 
-//AWS
-import Amplify from "@aws-amplify/core";
-import config from "../aws-exports";
-import API, { graphqlOperation } from "@aws-amplify/api";
-
-Amplify.configure(config);
-
-const ListSkills = `
-    query {
-      listSkills {
-        items {
-          id title hours
-        }
-      }
-    }
-    `;
+import { getSkills } from "../redux/actions/skillsActions.js";
 
 const SkillsHomeScreen = props => {
   const [currentSkills, setCurrentSkills] = useState([
@@ -24,15 +9,7 @@ const SkillsHomeScreen = props => {
   ]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const skills = await API.graphql(graphqlOperation(ListSkills));
-        console.log("skills: ", skills);
-        this.setState({ skills: skills.data.listSkills.items });
-      } catch (err) {
-        console.log("error: ", err);
-      }
-    }
+    getSkills();
   }, []);
 
   return (
